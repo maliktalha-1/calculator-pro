@@ -17,9 +17,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/calculations", calculationRoutes);
 
-// ==============================
 // Protected Test Route
-// ==============================
 app.get("/api/protected", authenticateUser, (req, res) => {
     res.status(200).json({
         success: true,

@@ -94,7 +94,7 @@ calculator-app/
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/calculator-pro.git
+git clone https://github.com/maliktalha-1/calculator-pro.git
 ```
 
 ## Backend Setup
@@ -174,7 +174,6 @@ Import the required SQL tables before running the application.
 - Export History
 - Profile Management
 - Calculator Keyboard Support
-- Pagination
 
 ---
 
