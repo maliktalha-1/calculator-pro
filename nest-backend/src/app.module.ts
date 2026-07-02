@@ -1,20 +1,27 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AuthModule } from './auth/auth.module';
 import { CalculationsModule } from './calculations/calculations.module';
 
 @Module({
   imports: [
-    // 1. Load the .env file globally so all departments can safely read secrets
     ConfigModule.forRoot({
       isGlobal: true,
     }),
 
-    // 2. Connect to MongoDB using your environment variable
-    MongooseModule.forRoot(process.env.MONGO_URI!),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
 
-    // 3. Register your newly generated departments
     AuthModule,
     CalculationsModule,
   ],

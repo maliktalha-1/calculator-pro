@@ -1,17 +1,20 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
-import { CalculationsService } from './calculations.service';
+
 import { CalculationsController } from './calculations.controller';
-import { Calculation, CalculationSchema } from './schemas/calculation.schema';
+import { CalculationsService } from './calculations.service';
+
+import { Calculation } from './entities/calculation.entity';
+import { User } from '../auth/entities/user.entity';
 
 @Module({
   imports: [
-    // THIS is the magic line fixing your error! It officially registers the database model.
-    MongooseModule.forFeature([{ name: Calculation.name, schema: CalculationSchema }]),
-    
-    // Required so the VIP Bouncer can read the cookies
-    JwtModule.register({}), 
+    TypeOrmModule.forFeature([
+      Calculation,
+      User,
+    ]),
+    JwtModule.register({}),
   ],
   controllers: [CalculationsController],
   providers: [CalculationsService],
