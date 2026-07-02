@@ -1,31 +1,43 @@
 # Calculator Pro
 
-A modern full-stack calculator application built using **React.js**, **Node.js**, **Express.js**, and **MySQL**. The application provides secure user authentication using JWT, allows users to perform arithmetic calculations, and stores their calculation history in a MySQL database.
+A modern full-stack calculator application built with **React.js**, **Node.js**, **Express.js**, **NestJS**, and **MySQL**. The application provides secure JWT authentication, performs arithmetic calculations, and stores each user's calculation history in a MySQL database.
 
 ---
 
 # Project Overview
 
-Calculator Pro is a secure web application that enables users to create an account, log in, perform arithmetic calculations, and automatically save every calculation. Each user has a separate calculation history that can be viewed, deleted individually, or cleared completely.
+Calculator Pro is a secure web application that allows users to:
 
-This project was developed as part of an internship assignment to demonstrate full-stack web development skills, RESTful API development, JWT authentication, database integration, and responsive frontend design.
+* Register and log in securely
+* Perform arithmetic calculations
+* Automatically save calculation history
+* View previous calculations
+* Delete individual calculations
+* Clear all calculation history
+
+This project was developed as part of an internship assignment to demonstrate full-stack web development skills, RESTful API development, authentication, database integration, and backend development using both **Express.js** and **NestJS**.
 
 ---
 
 # Features
 
-- User Registration
-- User Login
-- JWT Authentication
-- Protected API Routes
-- Addition, Subtraction, Multiplication, and Division
-- Automatic Calculation History
-- View Previous Calculations
-- Delete Individual Calculation
-- Clear Entire History
-- Responsive User Interface
-- Toast Notifications
-- MySQL Database Integration
+* User Registration
+* User Login
+* JWT Authentication
+* Protected API Routes
+* Addition
+* Subtraction
+* Multiplication
+* Division
+* Automatic Calculation History
+* Pagination Support
+* Search Calculation History
+* Sort Calculation History
+* Delete Individual Calculation
+* Clear Entire History
+* Responsive User Interface
+* Toast Notifications
+* MySQL Database Integration
 
 ---
 
@@ -33,45 +45,70 @@ This project was developed as part of an internship assignment to demonstrate fu
 
 ## Frontend
 
-- React.js
-- Vite
-- Tailwind CSS
-- Axios
-- React Router DOM
-- React Hot Toast
-- React Icons
+* React.js
+* Vite
+* Tailwind CSS
+* Axios
+* React Router DOM
+* React Hot Toast
+* React Icons
 
-## Backend
+---
 
-- Node.js
-- Express.js
-- MySQL
-- JWT (JSON Web Token)
-- bcrypt
-- dotenv
-- cors
+## Express Backend
+
+* Node.js
+* Express.js
+* MySQL
+* JWT (JSON Web Token)
+* bcrypt
+* dotenv
+* cors
+
+---
+
+## NestJS Backend
+
+* NestJS
+* TypeORM
+* MySQL
+* JWT Authentication
+* Class Validator
+* Class Transformer
+* Cookie Parser
+* Config Module
+
+---
 
 ## Database
 
-- MySQL
+* MySQL
 
 ---
 
 # Project Structure
 
-```
+```text
 calculator-app/
 
-├── backend/
+├── backend/                 # Express Backend
 │   ├── config/
 │   ├── controllers/
 │   ├── middleware/
 │   ├── routes/
 │   ├── services/
 │   ├── utils/
-│   ├── .env
-│   ├── package.json
+│   ├── package.json/
 │   └── server.js
+│
+├── nest-backend/            # NestJS Backend
+│   ├── src/
+│   │   ├── auth/
+│   │   ├── calculations/
+│   │   ├── app.module.ts
+│   │   └── main.ts
+│   ├── package.json
+│   └── .env
 │
 ├── frontend/
 │   ├── src/
@@ -95,40 +132,77 @@ calculator-app/
 
 ```bash
 git clone https://github.com/maliktalha-1/calculator-pro.git
+
+cd calculator-pro
 ```
 
-## Backend Setup
+---
 
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-## Frontend Setup
+# Frontend Setup
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
+```
+
+---
+
+# Express Backend Setup
+
+```bash
+cd backend
+
+npm install
+
+npm run dev
+```
+
+---
+
+# NestJS Backend Setup
+
+```bash
+cd nest-backend
+
+npm install
+
+npm run start:dev
 ```
 
 ---
 
 # Environment Variables
 
-Create a `.env` file inside the backend folder.
+Create a `.env` file inside the backend folders.
+
+## Express Backend
 
 ```env
 PORT=5000
 
 DB_HOST=localhost
-
 DB_USER=root
-
 DB_PASSWORD=your_password
-
 DB_NAME=calculator_db
+
+JWT_SECRET=your_secret_key
+```
+
+---
+
+## NestJS Backend
+
+```env
+PORT=5000
+
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=your_password
+DB_NAME=calculator
 
 JWT_SECRET=your_secret_key
 ```
@@ -137,13 +211,13 @@ JWT_SECRET=your_secret_key
 
 # Database Setup
 
-Create a MySQL database.
+Create the database.
 
 ```sql
-CREATE DATABASE calculator_db;
+CREATE DATABASE calculator;
 ```
 
-Import the required SQL tables before running the application.
+TypeORM will automatically generate the required tables when the NestJS backend starts.
 
 ---
 
@@ -151,33 +225,36 @@ Import the required SQL tables before running the application.
 
 ## Authentication
 
-| Method | Endpoint | Description |
-|---------|----------|-------------|
-| POST | `/api/auth/register` | Register a new user |
-| POST | `/api/auth/login` | Login user |
+| Method | Endpoint           | Description         |
+| ------ | ------------------ | ------------------- |
+| POST   | /api/auth/register | Register a new user |
+| POST   | /api/auth/login    | Login user          |
+| POST   | /api/auth/logout   | Logout user         |
+
+---
 
 ## Calculations
 
-| Method | Endpoint | Description |
-|---------|----------|-------------|
-| POST | `/api/calculations` | Save a calculation |
-| GET | `/api/calculations` | Get calculation history |
-| DELETE | `/api/calculations/:id` | Delete a calculation |
-| DELETE | `/api/calculations` | Clear all calculation history |
+| Method | Endpoint              | Description                   |
+| ------ | --------------------- | ----------------------------- |
+| POST   | /api/calculations     | Save a calculation            |
+| GET    | /api/calculations     | Get calculation history       |
+| DELETE | /api/calculations/:id | Delete a calculation          |
+| DELETE | /api/calculations     | Clear all calculation history |
 
 ---
 
 # Future Improvements
 
-- Dark Mode
-- Search Calculation History
-- Export History
-- Profile Management
-- Calculator Keyboard Support
+* Dark Mode
+* User Profile Management
+* Export Calculation History
+* Advanced Scientific Calculator
+* Password Reset
+* Email Verification
+* Unit Converter
+* Calculation Statistics
 
 ---
 
-
-# License
-
-This project is intended for educational and internship purposes.
+GitHub: https://github.com/maliktalha-1
